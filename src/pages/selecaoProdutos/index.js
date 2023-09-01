@@ -5,11 +5,12 @@ import Header3 from "../../components/header3";
 import Button from "../../components/button";
 import { Ionicons } from '@expo/vector-icons';
 
-export default function SelecaoProdutos () {
-        const navigation = useNavigation ();
-        const volta = () => navigation.navigate('Produtos')
-        const carrinho = () => navigation.navigate('Carrinho')
-        const onpress = () => navigation.navigate('Carrinho')
+export default function SelecaoProdutos ({navigation, route}) {
+        // const navigation = useNavigation ();
+        const clientId = route.params.clientId;
+        const volta = () => navigation.navigate('Produtos', {clientId})
+        const carrinho = () => navigation.navigate('Carrinho', {clientId})
+        const onpress = () => navigation.navigate('Carrinho', {clientId})
 
         return ( 
                 <View style={styles.container}>

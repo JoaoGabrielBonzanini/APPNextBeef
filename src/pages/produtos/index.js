@@ -5,12 +5,14 @@ import Header3 from "../../components/header3";
 import Product from "../../components/product";
 
 export default function Produtos({route, navigation}) {
-        const carrinho = () => navigation.navigate('Carrinho')
-        const clientId = route.params
+        const clientId = route.params.clientId;
+        const carrinho = () => navigation.navigate('Carrinho', {clientId});
+        const volta = () => navigation.navigate('Conta', {clientId});
+        const produto = () => navigation.navigate('SelecaoProdutos', {clientId});
 
         return (
                 <ScrollView style={styles.container} >
-                        <Header3 carrinho={carrinho} onPress={navigation.navigate('Conta', {clientId})}/> 
+                        <Header3 carrinho={carrinho} volta={volta}/> 
                         <View style={styles.whole}>
                                 <Text style={styles.lojaEnd}>Sebastião Fernandes Nogueira, 60. Américo Brasiliense/SP</Text>
                                 <View style={styles.box}>
@@ -27,7 +29,7 @@ export default function Produtos({route, navigation}) {
                                 <TouchableOpacity style={styles.noSelect}><Text style={styles.noSelection}>Outros</Text></TouchableOpacity>
                         </View>
                         <View style={styles.fileiraProdutos}>
-                                <Product imagem={(require('../../assets/img/noix.png'))} corte={'Noix'} marca={'CHEF'} valor={'89,90'}></Product>
+                                <Product imagem={(require('../../assets/img/noix.png'))} corte={'Noix'} marca={'CHEF'} valor={'89,90'} produto={produto}></Product>
                         </View>
                         <View style={styles.fileiraProdutos}>
                                 <Product></Product>

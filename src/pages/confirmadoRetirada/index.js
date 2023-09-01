@@ -5,10 +5,11 @@ import Header2 from "../../components/header2";
 import Button from "../../components/button";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ConfirmadoRetirada() {
-        const navigation = useNavigation();
-        const home = () => navigation.navigate('Produtos');
-        const onpress = () => navigation.navigate('MeusPedidos')
+export default function ConfirmadoRetirada({navigation, route}) {
+        // const navigation = useNavigation();
+        const clientId = req.params.clientId;
+        const home = () => navigation.navigate('Produtos', {clientId});
+        const onpress = () => navigation.navigate('MeusPedidos', {clientId})
 
         return (
                 <View style={styles.container} >

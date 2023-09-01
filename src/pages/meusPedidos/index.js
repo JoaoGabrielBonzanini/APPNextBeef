@@ -4,10 +4,14 @@ import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "rea
 import Header3 from "../../components/header3";
 import Order from "../../components/order";
 
-export default function MeusPedidos() {
-        const navigation = useNavigation();
-        const volta = () => navigation.navigate('Conta');
-        const carrinho = () => navigation.navigate('Carrinho');
+export default function MeusPedidos({navigation, route}) {
+        // const navigation = useNavigation();
+
+        const clientId = route.params.clientId;
+
+        const volta = () => navigation.navigate('Conta', {clientId});
+        const carrinho = () => navigation.navigate('Carrinho', {clientId});
+        const irProdutos = () => navigation.navigate('Produtos', {clientId})
 
         return (
                 <ScrollView style={styles.container}>
@@ -20,7 +24,7 @@ export default function MeusPedidos() {
                                 <Order endereco={'Rua dos Manacás, 850 - Vila Formosa Araraquara CEP 14850-325'} data={'28/04/2023'} horario={'09h53'} pedido={'142'} total={'39,90'}></Order>
                         </View>
                         <View style={styles.btn}>
-                                <TouchableOpacity onPress={() => navigation.navigate('Produtos')}><Image source={require('../../assets/img/home.png')} style={styles.btnImage}></Image></TouchableOpacity>
+                                <TouchableOpacity onPress={irProdutos}><Image source={require('../../assets/img/home.png')} style={styles.btnImage}></Image></TouchableOpacity>
                         </View>
                 </ScrollView>
 

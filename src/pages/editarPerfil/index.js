@@ -9,9 +9,11 @@ import Input from "../../components/input";
 import Header1 from "../../components/header1";
 
 export default function EditarPerfil({route, navigation}) {
-        const volta = () => navigation.navigate('Conta')
+        // const volta = () => navigation.navigate('Produtos')
         const clientId = route.params.clientId;
-        console.log(clientId)
+
+        const atualizado = () => navigation.navigate('Conta', {clientId});
+        const irConta = () => navigation.navigate('Conta', {clientId});
 
         const [email, setEmail] = useState('')
         const [nome_cliente, setNome] = useState('')
@@ -75,6 +77,7 @@ export default function EditarPerfil({route, navigation}) {
                                 })
                                 if(resposta.status === 200){
                                         Alert.alert('Dados atualizados com sucesso.')
+                                        atualizado();
                                 }
                                 else{
                                         Alert.alert('Não foi possível atualizar os dados.')
@@ -88,7 +91,7 @@ export default function EditarPerfil({route, navigation}) {
         return (
                 <KeyboardAvoidingView style={styles.container} behavior="height">
                         <ScrollView style={styles.whole}>
-                                <Header1 volta={volta} />
+                                <Header1 volta={irConta}/>
                                 <Text style={styles.title}>Editar Perfil</Text>
                                 <View style={styles.inputs}>
                                         <Input texto={'Nome'} teclado={'default'} valor={nome_cliente} altera={setNome}></Input>

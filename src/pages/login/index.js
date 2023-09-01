@@ -10,13 +10,14 @@ import InputPassword from "../../components/inputPassword";
 
 export default function Login({navigation}) {
         // const navigation = useNavigation();
-        const trocaSenha = () => navigation.navigate('EsqueciSenha');
-        const cadastro = () => navigation.navigate('Cadastro');
-        const onpress = () => navigation.navigate('Produtos');
+        const clientId = 1;
+
+        const trocaSenha = () => navigation.navigate('EsqueciSenha', {clientId});
+        const cadastro = () => navigation.navigate('Cadastro', {clientId});
+        const irProdutos = () => navigation.navigate('Produtos', {clientId})
 
         const [email, setEmail] = useState('');
         const [senha, setSenha] = useState('');
-        const clientId = 1;
 
         useEffect(() => {
                 fetchToken();
@@ -41,9 +42,8 @@ export default function Login({navigation}) {
                         if (resposta.status === 200) {
                                 const token = resposta.data.token
                                 await AsyncStorage.setItem('authToken', token)
-                                console.log(token)
                                 Alert.alert('Login efetuado com sucesso.')
-                                navigation.navigate('EditarPerfil', {clientId})
+                                irProdutos();
                                 setEmail('')
                                 setSenha('')
                                 console.log(email)

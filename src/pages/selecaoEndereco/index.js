@@ -4,9 +4,10 @@ import { Text, StyleSheet, View, ScrollView } from "react-native"
 import Header1 from "../../components/header1";
 import Address from "../../components/address";
 
-export default function SelecaoEndereco () {
-        const navigation = useNavigation()
-        const volta = () => navigation.navigate('Carrinho')
+export default function SelecaoEndereco ({navigation, route}) {
+        // const navigation = useNavigation();
+        const clientId = route.params.clientId;
+        const volta = () => navigation.navigate('Carrinho', {clientId})
         return (
                 <ScrollView style={styles.container}>
                         <Header1 volta={volta}/>

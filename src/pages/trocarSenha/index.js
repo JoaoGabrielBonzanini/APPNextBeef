@@ -5,10 +5,11 @@ import Header1 from "../../components/header1";
 import Button from "../../components/button";
 import InputPassword from "../../components/inputPassword";
 
-export default function TrocarSenha (){
-        const navigation = useNavigation();
-        const volta = () => navigation.navigate('Conta')
-        const onpress = () => navigation.navigate('Conta')
+export default function TrocarSenha ({navigation, route}){
+        // const navigation = useNavigation();
+        const clienteId = route.params.clienteId;
+        const volta = () => navigation.navigate('Conta', {clienteId})
+        const onpress = () => navigation.navigate('Conta', {clienteId})
 
         return (
                 <View style={styles.container}>

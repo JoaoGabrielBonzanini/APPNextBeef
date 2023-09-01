@@ -2,12 +2,10 @@ import React from "react";
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Product({ imagem, corte, marca, valor }) {
-        const navigation = useNavigation();
-
+export default function Product({ imagem, corte, marca, valor, produto}) {
         return (
                 <View style={styles.container}>
-                        <TouchableOpacity onPress={() => navigation.navigate('SelecaoProdutos')}>
+                        <TouchableOpacity onPress={produto}>
                                 <View style={styles.product}>
                                         <Image source={imagem} style={styles.produtoImagem}></Image>
                                         <Text style={styles.produtoCorte}>{corte}</Text>
@@ -15,7 +13,7 @@ export default function Product({ imagem, corte, marca, valor }) {
                                         <Text style={styles.produtoValor}>R$ {valor}</Text>
                                 </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('SelecaoProdutos')}>
+                        <TouchableOpacity onPress={produto}>
                                 <View style={styles.product}>
                                         <Image source={require('../../assets/img/picanha.png')} style={styles.produtoImagem}></Image>
                                         <Text style={styles.produtoCorte}>Picanha</Text>

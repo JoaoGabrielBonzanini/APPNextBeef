@@ -6,13 +6,15 @@ import { Foundation } from '@expo/vector-icons';
 import Header2 from "../../components/header2";
 import Button from "../../components/button";
 
-export default function Confirmado() {
-        const navigation = useNavigation();
-        const onpress = () => navigation.navigate('MeusPedidos')
+export default function Confirmado({navigation, route}) {
+        // const navigation = useNavigation();
+        const clientId = route.params.clientId;
+        const onpress = () => navigation.navigate('MeusPedidos', {clientId});
+        const home = () => navigation.navigate('Produtos', {clientId})
 
         return (
                 <View style={styles.container} >
-                        <Header2 />
+                        <Header2 home={home}/>
                         <View style={styles.box}>
                                 <View style={styles.imagem}>
                                         <Foundation name="checkbox" size={200} color="white" style={styles.check} />

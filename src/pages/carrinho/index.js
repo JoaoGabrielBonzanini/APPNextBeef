@@ -5,10 +5,14 @@ import Header1 from "../../components/header1";
 import ShoppingItem from "../../components/shoppingItem";
 import Button from "../../components/button";
 
-export default function Carrinho () {
-        const navigation = useNavigation ();
-        const onpress = () => navigation.navigate('Confirmado')
-        const volta = () => navigation.navigate('Produtos')
+export default function Carrinho ({navigation, route}) {
+        // const navigation = useNavigation ();
+        const clientId = route.params.clientId;
+        console.log(clientId)
+        const onpress = () => navigation.navigate('Confirmado', {clientId});
+        const volta = () => navigation.navigate('Produtos', {clientId});
+        const irConfirmado = () => navigation.navigate('ConfirmadoRetirada', {clientId});
+        const irSelecaoEndereco = () => navigation.navigate('SelecaoEndereco', {clientId});
 
         return (
                 <ScrollView style={styles.container}>
@@ -40,8 +44,8 @@ export default function Carrinho () {
                                 <Text style={styles.endereco}>Rua dos Manacás, 850 - Vila Formosa</Text>
                                 <Text style={styles.endereco}>Araraquara CEP: 14850-325</Text>
                                 <View style={styles.opcaoEntrega}>
-                                 <TouchableOpacity onPress={() => navigation.navigate('ConfirmadoRetirada')}><Text style={styles.opcao}>Retirada</Text></TouchableOpacity>
-                                 <TouchableOpacity onPress={() => navigation.navigate('SelecaoEndereco')}><Text style={styles.opcao}>Alterar endereço</Text></TouchableOpacity>
+                                 <TouchableOpacity onPress={irConfirmado}><Text style={styles.opcao}>Retirada</Text></TouchableOpacity>
+                                 <TouchableOpacity onPress={irSelecaoEndereco}><Text style={styles.opcao}>Alterar endereço</Text></TouchableOpacity>
                                 </View>
                         </View>
                         <Button labelButton={'Finalizar Pedido'} onpress={onpress}/>

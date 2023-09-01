@@ -5,10 +5,11 @@ import Input from "../../components/input";
 import Button from "../../components/button";
 import Header1 from "../../components/header1";
 
-export default function AdicionarEndereco() {
-        const navigation = useNavigation ();
-        const volta = () => navigation.navigate('Conta')
-        const onpress = () => navigation.navigate('SelecaoEndereco') 
+export default function AdicionarEndereco({navigation, route}) {
+        // const navigation = useNavigation ();
+        const clientId = route.params.clientId;
+        const volta = () => navigation.navigate('Conta', {clientId});
+        const onpress = () => navigation.navigate('SelecaoEndereco',{clientId});
 
         return (
                 <View style={styles.container}>
